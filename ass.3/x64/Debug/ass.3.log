@@ -1,0 +1,9 @@
+﻿  Infinity_Board.cpp
+Infinity_Board.obj : error LNK2005: "public: __cdecl Infinity_Board::Infinity_Board(void)" (??0Infinity_Board@@QEAA@XZ) already defined in XO_Classes.obj
+Infinity_Board.obj : error LNK2005: "public: virtual bool __cdecl Infinity_Board::game_is_over(class Player<char> *)" (?game_is_over@Infinity_Board@@UEAA_NPEAV?$Player@D@@@Z) already defined in XO_Classes.obj
+Infinity_Board.obj : error LNK2005: "public: virtual bool __cdecl Infinity_Board::is_draw(class Player<char> *)" (?is_draw@Infinity_Board@@UEAA_NPEAV?$Player@D@@@Z) already defined in XO_Classes.obj
+Infinity_Board.obj : error LNK2005: "public: virtual bool __cdecl Infinity_Board::is_lose(class Player<char> *)" (?is_lose@Infinity_Board@@UEAA_NPEAV?$Player@D@@@Z) already defined in XO_Classes.obj
+Infinity_Board.obj : error LNK2005: "public: virtual bool __cdecl Infinity_Board::is_win(class Player<char> *)" (?is_win@Infinity_Board@@UEAA_NPEAV?$Player@D@@@Z) already defined in XO_Classes.obj
+Infinity_Board.obj : error LNK2005: "public: virtual bool __cdecl Infinity_Board::update_board(class Move<char> *)" (?update_board@Infinity_Board@@UEAA_NPEAV?$Move@D@@@Z) already defined in XO_Classes.obj
+ass.3.obj : error LNK2019: unresolved external symbol "public: __cdecl X_O_Board::X_O_Board(void)" (??0X_O_Board@@QEAA@XZ) referenced in function main
+C:\c++\ass.3\x64\Debug\ass.3.exe : fatal error LNK1120: 1 unresolved externals
