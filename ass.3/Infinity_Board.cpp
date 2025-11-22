@@ -21,7 +21,7 @@ bool Infinity_Board::update_board(Move<char>* move) {
     int y = move->get_y();
     char mark = move->get_symbol();
 
-    // 1. نتأكد إن المكان فاضي (زي X-O)
+    // 1. نتأكد إن المكان فاضي
     if (!(x < 0 || x >= rows || y < 0 || y >= columns) &&
         (board[x][y] == blank_symbol)) {
 
@@ -29,22 +29,22 @@ bool Infinity_Board::update_board(Move<char>* move) {
         board[x][y] = toupper(mark);
         n_moves++;
 
-        // 3. نضيفها للطابور عشان نفتكرها
+        // 3. نضيفها للطابور
         move_history.push({ x, y });
 
-        // 4. (اللوجيك الجديد) لو الطابور بقى فيه أكتر من 3 حركات
-        if (move_history.size() > 3) {
-            // هات أقدم حركة (اللي في أول الطابور)
+        // 4. (التصحيح) لو الطابور بقى فيه أكتر من 6 حركات (يعني 3 لكل لاعب)
+        // نبدأ نمسح أقدم حركة عشان نحافظ على إن كل لاعب ليه 3 قطع بس
+        if (move_history.size() > 6) {
             pair<int, int> oldest_move = move_history.front();
-            move_history.pop(); // امسحها من الطابور
+            move_history.pop();
 
-            // امسحها من على البورد (رجعها نقطة)
             board[oldest_move.first][oldest_move.second] = blank_symbol;
+            // ملحوظة: مش بننقص n_moves لأننا ضفنا واحدة وشيلنا واحدة فالعدد ثابت
         }
 
-        return true; // الحركة تمت بنجاح
+        return true;
     }
-    return false; // المكان ده متاخد
+    return false;
 }
 
 // (دي دالة الفوز، زي X-O بالظبط)

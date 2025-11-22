@@ -7,13 +7,13 @@
  * All dynamically allocated objects are properly deleted at the end.
  */
 
-#include <iostream> // Required for input/output operations (cout, cin)
-#include <string>   // Required for string
-#include <vector>   // Required for vector
-#include <memory>   // Required for unique_ptr
+#include <iostream> 
+#include <string>   
+#include <vector>   
+#include <memory>   
 #include "BoardGame_Classes.h"
 #include "XO_Classes.h"
-#include "Infinity_Board.h" // <-- لازم دي تكون موجودة
+#include "Infinity_Board.h"
 
 using namespace std;
 
@@ -32,7 +32,7 @@ int main() {
     if (choice == 1) {
         // --- كود لعبة X-O ---
         UI<char>* game_ui = new XO_UI();
-        Board<char>* xo_board = new X_O_Board(); // <-- دي بتشغل X-O
+        Board<char>* xo_board = new X_O_Board(); 
         Player<char>** players = game_ui->setup_players();
         GameManager<char> x_o_game(xo_board, players, game_ui);
         x_o_game.run();
@@ -44,8 +44,8 @@ int main() {
     }
     else if (choice == 2) {
         // --- كود لعبة Infinity ---
-        Board<char>* board = new Infinity_Board(); // <-- دي بتشغل Infinity
-        UI<char>* ui = new XO_UI(); // بنستخدم نفس الـ UI بتاع X-O
+        Board<char>* board = new Infinity_Board();
+        UI<char>* ui = new XO_UI();
         Player<char>** players = ui->setup_players();
         GameManager<char> game(board, players, ui);
 
