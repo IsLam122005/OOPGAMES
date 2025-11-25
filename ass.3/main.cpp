@@ -40,10 +40,11 @@ int main() {
         game.run();
     }
     else if (ch == 3) {
-        playSUS();
+        SUS_Board::play();
     }
     else if (ch == 4) {
-        startFourInRow();
+        FourInARow_Board::play();
+
     }
     else if (ch == 5) {
         UI<char>* ui = new XO_UI();
