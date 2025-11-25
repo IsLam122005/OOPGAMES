@@ -1,7 +1,9 @@
-// SUS_Board.cpp
+// SUS.cpp
 #include "SUS_Board.h"
 #include <iostream>
 #include <cctype>
+#include <random>
+#include <chrono>
 using namespace std;
 
 /* COLORS */
@@ -13,147 +15,217 @@ using namespace std;
 #define MAGENTA "\x1B[35m"
 #define CYAN    "\x1B[36m"
 
-SUS_Board::SUS_Board() {
-    reset();
+/* ASCII art helper (kept here per your request) */
+static void print_sus_ascii() {
+    cout << RED <<
+        "  _____ _   _  _____  \n"
+        " /  ___| | | |/  ___| \n"
+        " \\ `--.| |_| |\\ `--.  \n"
+        "  `--. \\  _  | `--. \\ \n"
+        " /\\__/ / | | |/\\__/ / \n"
+        " \\____/\\_| |_/\\____/  \n"
+        << RESET;
 }
 
-void SUS_Board::reset() {  // fill the entire grid with spaces
-    for (auto& row : grid)
-        for (char& c : row)
-            c = ' ';
+/* Constructor: call base Board constructor with 3x3 */
+SUS_Board::SUS_Board() : Board<char>(3, 3), scoreS(0), scoreU(0) {
+    for (int r = 0; r < rows; ++r)
+        for (int c = 0; c < columns; ++c)
+            board[r][c] = ' ';
 }
 
 bool SUS_Board::inRange(int r, int c) {
     return (r >= 0 && r < 3 && c >= 0 && c < 3);
 }
 
-bool SUS_Board::validLetter(char ch) {
-    ch = toupper(ch);
-    return (ch == 'S' || ch == 'U');
-}
-
-void SUS_Board::display() const {
-    cout << "\n  0 1 2\n";
-    for (int r = 0; r < 3; r++) {
-        cout << r << " ";
-        for (int c = 0; c < 3; c++) {
-            cout << (grid[r][c] == ' ' ? '.' : grid[r][c]);
-            if (c < 2) cout << " ";
-        }
-        cout << "\n";
-    }
-    cout << "\n";
-}
-
-bool SUS_Board::place(int r, int c, char letter) {
-    letter = toupper(letter);
-
-    // validate move
-    if (!validLetter(letter)) return false;
-    if (!inRange(r, c)) return false;
-    if (grid[r][c] != ' ') return false;
-
-    grid[r][c] = letter;
-    return true;
-}
-
-bool SUS_Board::isFull() const {  // checks if all cells are filled
-    for (auto& row : grid)
-        for (char c : row)
-            if (c == ' ')
-                return false;
-    return true;
-}
-
-int SUS_Board::totalSUS() const { // check for "S U S"
-    int count = 0;
-
-    // rows
-    for (int r = 0; r < 3; r++)
-        if (grid[r][0] == 'S' && grid[r][1] == 'U' && grid[r][2] == 'S')
-            count++;
-
-    // cols
-    for (int c = 0; c < 3; c++)
-        if (grid[0][c] == 'S' && grid[1][c] == 'U' && grid[2][c] == 'S')
-            count++;
-
-    // diagonals
-    if (grid[0][0] == 'S' && grid[1][1] == 'U' && grid[2][2] == 'S') count++;
-    if (grid[0][2] == 'S' && grid[1][1] == 'U' && grid[2][0] == 'S') count++;
-
-    return count;
-}
-
-int SUS_Board::countSUSAtCell(int r, int c) const {  // detect any "S U S" pattern by the laetst move
-    int score = 0;
-
-    auto S=[&](int rr,int cc){return inRange(rr,cc) && grid[rr][cc]=='S';};
-    auto U=[&](int rr,int cc){return inRange(rr,cc) && grid[rr][cc]=='U';};
+/* count S-U-S sequences that involve cell (r,c) */
+int SUS_Board::countSUSAtCell(int r, int c) const {
+    int sc = 0;
+    auto S = [&](int rr, int cc) { return inRange(rr, cc) && board[rr][cc] == 'S'; };
+    auto U = [&](int rr, int cc) { return inRange(rr, cc) && board[rr][cc] == 'U'; };
 
     // horizontal
-    if (U(r,c)&&S(r,c-1)&&S(r,c+1)) score++;
-    if (S(r,c)&&U(r,c+1)&&S(r,c+2)) score++;
-    if (S(r,c)&&U(r,c-1)&&S(r,c-2)) score++;
+    if (U(r, c) && S(r, c - 1) && S(r, c + 1)) ++sc;
+    if (S(r, c) && U(r, c + 1) && S(r, c + 2)) ++sc;
+    if (S(r, c) && U(r, c - 1) && S(r, c - 2)) ++sc;
 
     // vertical
-    if (U(r,c)&&S(r-1,c)&&S(r+1,c)) score++;
-    if (S(r,c)&&U(r+1,c)&&S(r+2,c)) score++;
-    if (S(r,c)&&U(r-1,c)&&S(r-2,c)) score++;
+    if (U(r, c) && S(r - 1, c) && S(r + 1, c)) ++sc;
+    if (S(r, c) && U(r + 1, c) && S(r + 2, c)) ++sc;
+    if (S(r, c) && U(r - 1, c) && S(r - 2, c)) ++sc;
 
-    // main diag
-    if (U(r,c)&&S(r-1,c-1)&&S(r+1,c+1)) score++;
-    if (S(r,c)&&U(r+1,c+1)&&S(r+2,c+2)) score++;
-    if (S(r,c)&&U(r-1,c-1)&&S(r-2,c-2)) score++;
+    // diagonal
+    if (U(r, c) && S(r - 1, c - 1) && S(r + 1, c + 1)) ++sc;
+    if (S(r, c) && U(r + 1, c + 1) && S(r + 2, c + 2)) ++sc;
+    if (S(r, c) && U(r - 1, c - 1) && S(r - 2, c - 2)) ++sc;
 
-    // anti diag
-    if (U(r,c)&&S(r-1,c+1)&&S(r+1,c-1)) score++;
-    if (S(r,c)&&U(r+1,c-1)&&S(r+2,c-2)) score++;
-    if (S(r,c)&&U(r-1,c+1)&&S(r-2,c+2)) score++;
+    // anti-diagonal
+    if (U(r, c) && S(r - 1, c + 1) && S(r + 1, c - 1)) ++sc;
+    if (S(r, c) && U(r + 1, c - 1) && S(r + 2, c - 2)) ++sc;
+    if (S(r, c) && U(r - 1, c + 1) && S(r - 2, c + 2)) ++sc;
 
-    return score;
+    return sc;
 }
 
+/* engine-compatible update_board */
+bool SUS_Board::update_board(Move<char>* m) {
+    if (!m) return false;
+    int r = m->get_x();
+    int c = m->get_y();
+    char sym = static_cast<char>(toupper(m->get_symbol()));
 
-void playSUS() {
-    cout << RED <<
-    "  _____ _   _  _____  \n"
-    " /  ___| | | |/  ___| \n"
-    " \\ `--.| |_| |\\ `--.  \n"
-    "  `--. \\  _  | `--. \\ \n"
-    " /\\__/ / | | |/\\__/ / \n"
-    " \\____/\\_| |_/\\____/  \n"
-    << RESET;
+    if (!inRange(r, c)) return false;
+    if (board[r][c] != ' ') return false;
 
+    // mapping: engine symbols X->S, O->U; also accept S/U directly
+    char placed;
+    if (sym == 'X') placed = 'S';
+    else if (sym == 'O') placed = 'U';
+    else if (sym == 'S' || sym == 'U') placed = sym;
+    else return false;
+
+    board[r][c] = placed;
+
+    int gained = countSUSAtCell(r, c);
+    if (gained > 0) {
+        if (placed == 'S') scoreS += gained;
+        else scoreU += gained;
+    }
+
+    ++n_moves;
+    return true;
+}
+
+/* game ends when board full (per your rules) */
+bool SUS_Board::game_is_over(Player<char>* /*player*/) {
+    for (int r = 0; r < rows; ++r)
+        for (int c = 0; c < columns; ++c)
+            if (board[r][c] == ' ') return false;
+    return true;
+}
+
+/* final outcome only when board full */
+bool SUS_Board::is_win(Player<char>* player) {
+    if (!player) return false;
+    if (!game_is_over(player)) return false;
+    char psym = player->get_symbol();
+    char susSym = (psym == 'X') ? 'S' : (psym == 'O' ? 'U' : psym);
+    if (susSym == 'S') return scoreS > scoreU;
+    if (susSym == 'U') return scoreU > scoreS;
+    return false;
+}
+
+bool SUS_Board::is_lose(Player<char>* player) {
+    if (!player) return false;
+    if (!game_is_over(player)) return false;
+    char psym = player->get_symbol();
+    char susSym = (psym == 'X') ? 'S' : (psym == 'O' ? 'U' : psym);
+    if (susSym == 'S') return scoreS < scoreU;
+    if (susSym == 'U') return scoreU < scoreS;
+    return false;
+}
+
+bool SUS_Board::is_draw(Player<char>* /*player*/) {
+    if (!game_is_over(nullptr)) return false;
+    return scoreS == scoreU;
+}
+
+/* ----------------- interactive play() (menu-driven) -----------------
+   this function handles ascii, asking for player names and types, and gameplay loop.
+   it uses random moves for computer players.
+*/
+void SUS_Board::play() {
+    print_sus_ascii();
     cout << MAGENTA << "Welcome to SUS Game!\n\n" << RESET;
 
-    SUS_Board b;
-    int p = 1;
-    int s1=0, s2=0;
+    string p1, p2;
+    int type1 = 1, type2 = 1;
 
-    b.display();
+    // ask for player S name & type
+    cout << "Enter Player S name: ";
+    getline(cin >> ws, p1);
+    cout << "Choose Player S type:\n1. Human\n2. Computer\n";
+    cin >> type1;
+    while (type1 != 1 && type1 != 2) { cout << "invalid choice, enter 1 or 2: "; cin >> type1; }
 
-    while (!b.isFull()) {
-        int r,c;
-        char L = (p==1?'S':'U');  // player 1 always uses S, player 2 uses U
+    // ask for player U name & type
+    cout << "Enter Player U name: ";
+    getline(cin >> ws, p2);
+    cout << "Choose Player U type:\n1. Human\n2. Computer\n";
+    cin >> type2;
+    while (type2 != 1 && type2 != 2) { cout << "invalid choice, enter 1 or 2: "; cin >> type2; }
 
-        cout << CYAN << "Player " << p << " (" << L << ") enter row col: " << RESET;
-        cin >> r >> c;
+    SUS_Board b; // fresh board for playing
+    int current = 1;
+    int s1 = 0, s2 = 0;
 
-        if (!b.place(r,c,L)) {
+    // rng setup
+    unsigned seed = (unsigned)chrono::system_clock::now().time_since_epoch().count();
+    static std::mt19937 rng(seed);
+
+    // display helper
+    auto disp = [&]() {
+        cout << "\n  0 1 2\n";
+        for (int r = 0; r < 3; ++r) {
+            cout << r << " ";
+            for (int c = 0; c < 3; ++c) {
+                cout << (b.board[r][c] == ' ' ? '.' : b.board[r][c]);
+                if (c < 2) cout << " ";
+            }
+            cout << "\n";
+        }
+        cout << "\n";
+        };
+
+    disp();
+
+    while (!b.game_is_over(nullptr)) {
+        int r, c;
+        char letter = (current == 1 ? 'S' : 'U');
+        string name = (current == 1 ? p1 : p2);
+        int ptype = (current == 1 ? type1 : type2);
+
+        if (ptype == 1) {
+            // human
+            cout << name << " (" << letter << ") enter row col: ";
+            if (!(cin >> r >> c)) { cin.clear(); cin.ignore(10000, '\n'); cout << "invalid input\n"; continue; }
+        }
+        else {
+            // computer: pick random empty cell
+            vector<pair<int, int>> empties;
+            for (int rr = 0; rr < 3; ++rr)
+                for (int cc = 0; cc < 3; ++cc)
+                    if (b.board[rr][cc] == ' ')
+                        empties.emplace_back(rr, cc);
+
+            if (empties.empty()) break;
+            std::uniform_int_distribution<size_t> dist(0, empties.size() - 1);
+            auto pr = empties[dist(rng)];
+            r = pr.first; c = pr.second;
+            cout << "computer " << name << " plays: " << r << " " << c << "\n";
+        }
+
+        // create a move using engine Move<char>
+        SUS_Move mv(r, c, letter);
+        if (!b.update_board(&mv)) {
             cout << RED << "Invalid move!\n" << RESET;
             continue;
         }
 
-        int gain = b.countSUSAtCell(r,c);
-        if (p==1) s1+=gain;
-        else s2+=gain;
+        int gained = b.countSUSAtCell(r, c);
+        if (gained > 0) {
+            if (letter == 'S') s1 += gained;
+            else s2 += gained;
+        }
 
-        b.display();
-        cout << YELLOW << "Scores  P1=" << s1 << "  P2=" << s2 << RESET << "\n";
+        disp();
+        cout << YELLOW << "Score: " << p1 << "=" << s1 << "  " << p2 << "=" << s2 << RESET << "\n";
 
-        p = (p==1?2:1);
+        current = (current == 1 ? 2 : 1);
     }
 
-    cout << GREEN << "\nGAME OVER!\n" << RESET;
+    cout << "Game Over!\n";
+    if (s1 > s2) cout << p1 << " wins!\n";
+    else if (s2 > s1) cout << p2 << " wins!\n";
+    else cout << "Tie!\n";
 }

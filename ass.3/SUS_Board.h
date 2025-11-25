@@ -1,29 +1,44 @@
-// SUS_Board.h
-#ifndef SUS_BOARD_H
-#define SUS_BOARD_H
+// SUS.h
+#ifndef SUS_H
+#define SUS_H
 
+#include "BoardGame_Classes.h"
 #include <array>
 
-class SUS_Board {
-private:
-    std::array<std::array<char, 3>, 3> grid;
+/*
+SUS: 3x3 game where players create "S-U-S" sequences.
+This header declares:
+- SUS_Move (inherits Move<char>)
+- SUS_Board (inherits Board<char> and implements engine virtuals)
+*/
 
-    static bool inRange(int r, int c);
-
+class SUS_Move : public Move<char> {
 public:
-    SUS_Board();
-
-    void reset();
-    void display() const;
-    bool place(int r, int c, char letter);
-    bool isFull() const;
-
-    int countSUSAtCell(int r, int c) const;
-    int totalSUS() const;
-
-    static bool validLetter(char ch);
+    SUS_Move(int r = -1, int c = -1, char s = 'S') : Move<char>(r, c, s) {}
+    virtual ~SUS_Move() = default;
 };
 
-void playSUS();
+class SUS_Board : public Board<char> {
+public:
+    SUS_Board();
+    virtual ~SUS_Board() = default;
 
-#endif
+    // engine-required overrides
+    virtual bool update_board(Move<char>* move) override;
+    virtual bool is_win(Player<char>* player) override;
+    virtual bool is_lose(Player<char>* player) override;
+    virtual bool is_draw(Player<char>* player) override;
+    virtual bool game_is_over(Player<char>* player) override;
+
+    // interactive play entry (shows ascii + accepts input)
+    static void play();
+
+private:
+    int scoreS;
+    int scoreU;
+
+    static bool inRange(int r, int c);
+    int countSUSAtCell(int r, int c) const;
+};
+
+#endif // SUS_H
