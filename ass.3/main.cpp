@@ -6,6 +6,8 @@
 #include "Infinity_Board.h"
 #include "Pyramid_X_O.h"
 #include "TicTacToe4x4.h"
+#include "MisereXO_Classes.h"
+#include "diamondXO.h"
 
 using namespace std;
 
@@ -18,6 +20,8 @@ int main() {
     cout << "4. Four-In-A-Row\n";
     cout << "5.  Pyramid Tic-Tac-Toe\n";
     cout << "6.TicTacToe4x4\n";
+    cout << "7. Misere Tic Tac Toe\n";
+    cout << "8. Diamond Tic Tac Toe\n";
     int ch;
     cin >> ch;
 
@@ -66,6 +70,31 @@ int main() {
         Player<char>** players = ui->setup_players();
         GameManager<char> game(board, players, ui);
 
+        game.run();
+
+        delete board;
+        delete players[0];
+        delete players[1];
+        delete ui;
+    }
+    else if (ch == 7) { // Misere Game
+        UI<char>* ui = new Misere_XO_UI();
+        Board<char>* board = new Misere_XO_Board();
+        Player<char>** players = ui->setup_players();
+        GameManager<char> game(board, players, ui);
+        game.run();
+
+        // تنظيف الذاكرة (اختياري لكن مفضل)
+        delete board;
+        delete players[0];
+        delete players[1];
+        delete ui;
+    }
+    else if (ch == 8) { // Diamond Game
+        UI<char>* ui = new DiamondUI();
+        Board<char>* board = new DiamondBoard();
+        Player<char>** players = ui->setup_players();
+        GameManager<char> game(board, players, ui);
         game.run();
 
         delete board;

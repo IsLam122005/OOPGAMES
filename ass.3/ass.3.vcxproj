@@ -123,17 +123,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="diamondXO.cpp" />
     <ClCompile Include="FourInRow_Board.cpp" />
     <ClCompile Include="Infinity_Board.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MisereXO_Classes.cpp" />
     <ClCompile Include="SUS_Board.cpp" />
     <ClCompile Include="XO_Classes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ass3\BoardGame_Classes.h" />
     <ClInclude Include="..\..\ass3\XO_Classes.h" />
+    <ClInclude Include="diamondXO.h" />
     <ClInclude Include="FourInRow_Board.h" />
     <ClInclude Include="Infinity_Board.h" />
+    <ClInclude Include="MisereXO_Classes.h" />
     <ClInclude Include="Pyramid_X_O.h" />
     <ClInclude Include="SUS_Board.h" />
     <ClInclude Include="TicTacToe4x4.h" />

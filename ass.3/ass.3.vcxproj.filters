@@ -30,6 +30,12 @@
     <ClCompile Include="XO_Classes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="diamondXO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MisereXO_Classes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ass3\BoardGame_Classes.h">
@@ -51,6 +57,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TicTacToe4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="diamondXO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MisereXO_Classes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
