@@ -46,24 +46,17 @@ int main() {
         startFourInRow();
     }
     else if (ch == 5) {
-        // التصحيح هنا: نستخدم الكلاسات مباشرة بدل دالة py
-        // هنستخدم XO_UI لأنه متاح وشغال مع الحروف
         UI<char>* ui = new XO_UI();
 
-        // ونستخدم بوردة الهرم بتاعتنا
         Board<char>* board = new Pyramid_Board<char>();
 
-        // ونجهز اللاعبين واللعبة
         Player<char>** players = ui->setup_players();
         GameManager<char> game(board, players, ui);
 
-        // شغل اللعبة
         game.run();
     }
     else if (ch == 6) {
-        // UI<char>* ui = new XO_UI();  <-- امسح القديم ده لو موجود
 
-        // استخدم الجديد ده:
         UI<char>* ui = new TicTacToe4x4_UI<char>(3);
 
         Board<char>* board = new TicTacToe4x4_Board<char>();
@@ -77,14 +70,12 @@ int main() {
         delete players[1];
         delete ui;
     }
-    else if (ch == 7) { // Misere Game
+    else if (ch == 7) { 
         UI<char>* ui = new Misere_XO_UI();
         Board<char>* board = new Misere_XO_Board();
         Player<char>** players = ui->setup_players();
         GameManager<char> game(board, players, ui);
         game.run();
-
-        // تنظيف الذاكرة (اختياري لكن مفضل)
         delete board;
         delete players[0];
         delete players[1];
