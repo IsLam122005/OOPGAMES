@@ -8,6 +8,8 @@
 #include "TicTacToe4x4.h"
 #include "MisereXO_Classes.h"
 #include "diamondXO.h"
+#include "numerical tic-tac-toe.h"
+
 
 using namespace std;
 
@@ -22,6 +24,7 @@ int main() {
     cout << "6.TicTacToe4x4\n";
     cout << "7. Misere Tic Tac Toe\n";
     cout << "8. Diamond Tic Tac Toe\n";
+    cout << "9. Numerical Tic-Tac-Toe\n";
     int ch;
     cin >> ch;
 
@@ -94,5 +97,21 @@ int main() {
         delete players[1];
         delete ui;
     }
+    else if (ch == 9) {
+        UI<int>* ui = new NumericalUI<int>();
+        Board<int>* board = new NumericalBoard<int>();
+
+        Player<int>** players = ui->setup_players();
+
+        GameManager<int> game(board, players, ui);
+        game.run();
+
+        
+        delete board;
+        delete players[0];
+        delete players[1];
+        delete ui;
+    }
+    
     return 0;
 }
