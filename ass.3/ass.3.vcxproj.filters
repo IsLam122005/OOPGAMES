@@ -39,6 +39,12 @@
     <ClCompile Include="numerical tic-tac-toe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FiveByFive_Classes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WordGame_Classes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ass3\BoardGame_Classes.h">
@@ -71,5 +77,14 @@
     <ClInclude Include="numerical tic-tac-toe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FiveByFive_Classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WordGame_Classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dic.txt" />
   </ItemGroup>
 </Project>
