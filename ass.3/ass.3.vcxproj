@@ -102,6 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +117,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +132,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MisereXO_Classes.cpp" />
     <ClCompile Include="numerical tic-tac-toe.cpp" />
+    <ClCompile Include="Obstacles_TicTacToe.cpp" />
+    <ClCompile Include="Pyramid_X_O.cpp" />
     <ClCompile Include="SUS_Board.cpp" />
     <ClCompile Include="WordGame_Classes.cpp" />
     <ClCompile Include="XO_Classes.cpp" />
@@ -143,6 +147,7 @@
     <ClInclude Include="Infinity_Board.h" />
     <ClInclude Include="MisereXO_Classes.h" />
     <ClInclude Include="numerical tic-tac-toe.h" />
+    <ClInclude Include="Obstacles_TicTacToe.h" />
     <ClInclude Include="Pyramid_X_O.h" />
     <ClInclude Include="SUS_Board.h" />
     <ClInclude Include="TicTacToe4x4.h" />
