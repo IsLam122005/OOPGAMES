@@ -59,3 +59,4 @@ bool Pyramid_Board<T>::game_is_over(Player<T>* p) {
     bool Pyramid_Board<T>::is_lose(Player<T>* p) {
         return false;
     }
+    template class Pyramid_Board<char>;

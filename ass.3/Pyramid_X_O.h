@@ -15,6 +15,4 @@ public:
     bool is_lose(Player<T>* p);
 };
 
-#include "Pyramid_X_O.cpp"
-
 #endif 

@@ -11,6 +11,7 @@
 #include "numerical tic-tac-toe.h"
 #include "FiveByFive_Classes.h"
 #include "WordGame_Classes.h"
+#include "Obstacles_TicTacToe.h"
 
 using namespace std;
 
@@ -27,6 +28,8 @@ int main() {
     cout << "9. Numerical Tic-Tac-Toe\n";
     cout << "10. 5x5 Tic Tac Toe\n";
     cout << "11. Word Tic-Tac-Toe\n";
+    cout << "12. Obstacles Tic-Tac-Toe\n";
+
     int ch;
     cin >> ch;
 
@@ -118,6 +121,9 @@ int main() {
         GameManager<char> game(board, players, ui);
         game.run();
         delete board; delete players[0]; delete players[1]; delete ui;
+    }
+    else if (ch == 12) {
+        ObstaclesTTT_Board::play();
     }
 
     return 0;

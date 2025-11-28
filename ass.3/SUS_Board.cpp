@@ -15,19 +15,21 @@ using namespace std;
 #define MAGENTA "\x1B[35m"
 #define CYAN    "\x1B[36m"
 
-/* ASCII art helper (kept here per your request) */
 static void print_sus_ascii() {
-    cout << RED <<
-        "  _____ _   _  _____  \n"
-        " /  ___| | | |/  ___| \n"
-        " \\ `--.| |_| |\\ `--.  \n"
-        "  `--. \\  _  | `--. \\ \n"
-        " /\\__/ / | | |/\\__/ / \n"
-        " \\____/\\_| |_/\\____/  \n"
-        << RESET;
+    cout << YELLOW <<
+    "   ▄████████ ███    █▄     ▄████████ \n"
+    "  ███    ███ ███    ███   ███    ███ \n"
+    "  ███    █▀  ███    ███   ███    █▀  \n"
+    "  ███        ███    ███   ███        \n"
+    "▀███████████ ███    ███ ▀███████████ \n"
+    "         ███ ███    ███          ███ \n"
+    "   ▄█    ███ ███    ███    ▄█    ███ \n"
+    " ▄████████▀  ████████▀   ▄████████▀  \n"
+    "                                      \n"
+    << RESET;
 }
 
-/* Constructor: call base Board constructor with 3x3 */
+/* constructor */
 SUS_Board::SUS_Board() : Board<char>(3, 3), scoreS(0), scoreU(0) {
     for (int r = 0; r < rows; ++r)
         for (int c = 0; c < columns; ++c)
@@ -130,10 +132,6 @@ bool SUS_Board::is_draw(Player<char>* /*player*/) {
     return scoreS == scoreU;
 }
 
-/* ----------------- interactive play() (menu-driven) -----------------
-   this function handles ascii, asking for player names and types, and gameplay loop.
-   it uses random moves for computer players.
-*/
 void SUS_Board::play() {
     print_sus_ascii();
     cout << MAGENTA << "Welcome to SUS Game!\n\n" << RESET;
@@ -225,7 +223,7 @@ void SUS_Board::play() {
     }
 
     cout << "Game Over!\n";
-    if (s1 > s2) cout << p1 << " wins!\n";
-    else if (s2 > s1) cout << p2 << " wins!\n";
-    else cout << "Tie!\n";
+    if (s1 > s2) cout << GREEN << p1 << " wins!\n" << RESET;
+    else if (s2 > s1) cout << GREEN << p2 << " wins!\n" << RESET;
+    else cout << YELLOW << "Tie!\n" << RESET;
 }
