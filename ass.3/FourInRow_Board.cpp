@@ -1,5 +1,5 @@
 // FourInARow.cpp
-#include "FourInARow.h"
+#include "FourInRow_Board.h"
 #include <iostream>
 #include <random>
 #include <chrono>
@@ -17,33 +17,33 @@ using namespace std;
 /* ascii art */
 static void print_four_ascii() {
     cout << RED <<
-    " _  _        __  .__   __.         ___     \n"
-    "| || |      |  | |  \\ |  |        /   \\    \n"
-    "| || |_     |  | |   \\|  |       /  ^  \\   \n"
-    "|__   _|    |  | |  . `  |      /  /_\\  \\  \n"
-    "   | |      |  | |  |\\   |     /  _____  \\ \n"
-    "   |_|      |__| |__| \\__|    /__/     \\__\\\n"
-    << RESET;
+        " _  _        __  .__   __.         ___     \n"
+        "| || |      |  | |  \\ |  |        /   \\    \n"
+        "| || |_     |  | |   \\|  |       /  ^  \\   \n"
+        "|__   _|    |  | |  . `  |      /  /_\\  \\  \n"
+        "   | |      |  | |  |\\   |     /  _____  \\ \n"
+        "   |_|      |__| |__| \\__|    /__/     \\__\\\n"
+        << RESET;
 
     cout << BLUE <<
-    ".______        ______    ____    __    ____ \n"
-    "|   _  \\      /  __  \\   \\   \\  /  \\  /   / \n"
-    "|  |_)  |    |  |  |  |   \\   \\/    \\/   /  \n"
-    "|      /     |  |  |  |    \\            /   \n"
-    "|  |\\  \\----.|  `--'  |     \\    /\\    /    \n"
-    "| _| `._____| \\______/       \\__/  \\__/     \n"
-    << RESET;
+        ".______        ______    ____    __    ____ \n"
+        "|   _  \\      /  __  \\   \\   \\  /  \\  /   / \n"
+        "|  |_)  |    |  |  |  |   \\   \\/    \\/   /  \n"
+        "|      /     |  |  |  |    \\            /   \n"
+        "|  |\\  \\----.|  `--'  |     \\    /\\    /    \n"
+        "| _| `._____| \\______/       \\__/  \\__/     \n"
+        << RESET;
 }
 
 /* constructor */
-FourInARow_Board::FourInARow_Board() : Board<char>(6,7), lastRow(-1), lastCol(-1), lastMark('\0') {
-    for (int r=0;r<rows;++r)
-        for (int c=0;c<columns;++c)
+FourInARow_Board::FourInARow_Board() : Board<char>(6, 7), lastRow(-1), lastCol(-1), lastMark('\0') {
+    for (int r = 0; r < rows; ++r)
+        for (int c = 0; c < columns; ++c)
             board[r][c] = '.';
 }
 
-bool FourInARow_Board::inRange(int r,int c) const {
-    return r>=0 && r<rows && c>=0 && c<columns;
+bool FourInARow_Board::inRange(int r, int c) const {
+    return r >= 0 && r < rows && c >= 0 && c < columns;
 }
 
 /* drop logic: read column from move->get_y() and place mark at lowest empty row */
@@ -53,7 +53,7 @@ bool FourInARow_Board::update_board(Move<char>* m) {
     char sym = m->get_symbol();
 
     if (col < 0 || col >= columns) return false;
-    for (int r = rows-1; r >= 0; --r) {
+    for (int r = rows - 1; r >= 0; --r) {
         if (board[r][col] == '.') {
             board[r][col] = sym;
             lastRow = r;
@@ -66,22 +66,22 @@ bool FourInARow_Board::update_board(Move<char>* m) {
     return false;
 }
 
-bool FourInARow_Board::checkDirection(int r,int c,int dr,int dc,char m) const {
+bool FourInARow_Board::checkDirection(int r, int c, int dr, int dc, char m) const {
     int cnt = 1;
     int rr = r + dr, cc = c + dc;
-    while (inRange(rr,cc) && board[rr][cc] == m) { cnt++; rr += dr; cc += dc; }
+    while (inRange(rr, cc) && board[rr][cc] == m) { cnt++; rr += dr; cc += dc; }
     rr = r - dr; cc = c - dc;
-    while (inRange(rr,cc) && board[rr][cc] == m) { cnt++; rr -= dr; cc -= dc; }
+    while (inRange(rr, cc) && board[rr][cc] == m) { cnt++; rr -= dr; cc -= dc; }
     return cnt >= 4;
 }
 
-bool FourInARow_Board::checkWinAt(int r,int c,char m) const {
-    return checkDirection(r,c,1,0,m) || checkDirection(r,c,0,1,m) ||
-           checkDirection(r,c,1,1,m) || checkDirection(r,c,1,-1,m);
+bool FourInARow_Board::checkWinAt(int r, int c, char m) const {
+    return checkDirection(r, c, 1, 0, m) || checkDirection(r, c, 0, 1, m) ||
+        checkDirection(r, c, 1, 1, m) || checkDirection(r, c, 1, -1, m);
 }
 
 bool FourInARow_Board::boardFull() const {
-    for (int c=0;c<columns;++c) if (board[0][c] == '.') return false;
+    for (int c = 0; c < columns; ++c) if (board[0][c] == '.') return false;
     return true;
 }
 
@@ -100,13 +100,13 @@ bool FourInARow_Board::is_lose(Player<char>* player) {
 bool FourInARow_Board::is_draw(Player<char>* /*player*/) {
     if (!boardFull()) return false;
     // full and no winner
-    for (int r=0;r<rows;++r) for (int c=0;c<columns;++c)
-        if (board[r][c] != '.' && checkWinAt(r,c,board[r][c])) return false;
+    for (int r = 0; r < rows; ++r) for (int c = 0; c < columns; ++c)
+        if (board[r][c] != '.' && checkWinAt(r, c, board[r][c])) return false;
     return true;
 }
 
 bool FourInARow_Board::game_is_over(Player<char>* /*player*/) {
-    if (lastRow >= 0 && checkWinAt(lastRow,lastCol,lastMark)) return true;
+    if (lastRow >= 0 && checkWinAt(lastRow, lastCol, lastMark)) return true;
     return boardFull();
 }
 
@@ -140,35 +140,36 @@ void FourInARow_Board::play() {
     unsigned seed = (unsigned)chrono::system_clock::now().time_since_epoch().count();
     static std::mt19937 rng(seed);
 
-    auto disp = [&](){
-    cout << "\n  0 1 2 3 4 5 6\n";
-    for (int r = 0; r < b.get_rows(); ++r) {
-        cout << r << " ";
-        for (int c = 0; c < b.get_columns(); ++c)
-            cout << b.board[r][c] << " ";
+    auto disp = [&]() {
+        cout << "\n  0 1 2 3 4 5 6\n";
+        for (int r = 0; r < b.get_rows(); ++r) {
+            cout << r << " ";
+            for (int c = 0; c < b.get_columns(); ++c)
+                cout << b.board[r][c] << " ";
+            cout << "\n";
+        }
         cout << "\n";
-    }
-    cout << "\n";
-    };
+        };
 
     disp();
     int current = 1;
     while (!b.game_is_over(nullptr)) {
         int col;
-        string name = (current==1? p1 : p2);
-        char mark = (current==1? 'X' : 'O');
-        int ptype = (current==1 ? type1 : type2);
+        string name = (current == 1 ? p1 : p2);
+        char mark = (current == 1 ? 'X' : 'O');
+        int ptype = (current == 1 ? type1 : type2);
 
         if (ptype == 1) {
             cout << name << " (" << mark << ") choose column (0-6): ";
-            if (!(cin >> col)) { cin.clear(); cin.ignore(10000,'\n'); cout << "invalid\n"; continue; }
-        } else {
+            if (!(cin >> col)) { cin.clear(); cin.ignore(10000, '\n'); cout << "invalid\n"; continue; }
+        }
+        else {
             // computer: choose random non-full column
             vector<int> cols;
             for (int c = 0; c < b.get_columns(); ++c)
                 if (b.board[0][c] == '.') cols.push_back(c);
             if (cols.empty()) break;
-            std::uniform_int_distribution<size_t> dist(0, cols.size()-1);
+            std::uniform_int_distribution<size_t> dist(0, cols.size() - 1);
             col = cols[dist(rng)];
             cout << "computer " << name << " chooses column " << col << "\n";
         }
@@ -186,6 +187,6 @@ void FourInARow_Board::play() {
             cout << YELLOW << "It's a tie!\n" << RESET;
             return;
         }
-        current = (current==1?2:1);
+        current = (current == 1 ? 2 : 1);
     }
 }

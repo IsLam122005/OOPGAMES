@@ -123,14 +123,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\ass3\XO_Classes.cpp" />
-    <ClCompile Include="ass.3.cpp" />
+    <ClCompile Include="diamondXO.cpp" />
+    <ClCompile Include="FiveByFive_Classes.cpp" />
+    <ClCompile Include="FourInRow_Board.cpp" />
     <ClCompile Include="Infinity_Board.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MisereXO_Classes.cpp" />
+    <ClCompile Include="numerical tic-tac-toe.cpp" />
+    <ClCompile Include="SUS_Board.cpp" />
+    <ClCompile Include="WordGame_Classes.cpp" />
+    <ClCompile Include="XO_Classes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ass3\BoardGame_Classes.h" />
     <ClInclude Include="..\..\ass3\XO_Classes.h" />
+    <ClInclude Include="diamondXO.h" />
+    <ClInclude Include="FiveByFive_Classes.h" />
+    <ClInclude Include="FourInRow_Board.h" />
     <ClInclude Include="Infinity_Board.h" />
+    <ClInclude Include="MisereXO_Classes.h" />
+    <ClInclude Include="numerical tic-tac-toe.h" />
+    <ClInclude Include="Pyramid_X_O.h" />
+    <ClInclude Include="SUS_Board.h" />
+    <ClInclude Include="TicTacToe4x4.h" />
+    <ClInclude Include="WordGame_Classes.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dic.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

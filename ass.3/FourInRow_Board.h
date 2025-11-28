@@ -1,4 +1,4 @@
-// FourInAr ow.h
+// FourInARow.h
 #ifndef FOURINAROW_H
 #define FOURINAROW_H
 
@@ -36,10 +36,10 @@ private:
     int lastCol;
     char lastMark;
 
-    bool inRange(int r,int c) const;
-    bool checkDirection(int r,int c,int dr,int dc,char m) const;
-    bool checkWinAt(int r,int c,char m) const;
+    bool inRange(int r, int c) const;
+    bool checkDirection(int r, int c, int dr, int dc, char m) const;
+    bool checkWinAt(int r, int c, char m) const;
     bool boardFull() const;
 };
 
-#endif // FOURINAROW_H
+#endif
