@@ -1,39 +1,64 @@
 ﻿#ifndef MISERE_XO_CLASSES_H
 #define MISERE_XO_CLASSES_H
 
-// Check if the include path is correct. If "BoardGame_Classes.h" is in the same directory, this is fine.
-// If it is in a parent or sibling directory, adjust the path accordingly, e.g.:
-#include "BoardGame_Classes.h" // If in the same directory
-
+#include "BoardGame_Classes.h"
 using namespace std;
 
-// ======================= Misère X-O Board ==========================
+/**
+ * @brief Misère Tic-Tac-Toe board (3x3).
+ * In Misère XO: making 3 in a row means you LOSE.
+ */
 class Misere_XO_Board : public Board<char> {
 private:
-    char blank_symbol = '.';
+    char blank_symbol = '.'; ///< Empty cell symbol
 
 public:
+    /**
+     * @brief Initializes the 3x3 board.
+     */
     Misere_XO_Board();
 
+    /**
+     * @brief Applies a move if valid.
+     */
     bool update_board(Move<char>* move);
 
-    // هنا اللي يعمل 3 في صف هو اللي بيخسر
+    /**
+     * @brief No win condition in Misère style.
+     */
     bool is_win(Player<char>* player) { return false; }
 
+    /**
+     * @brief Checks if player loses (makes 3 in a row).
+     */
     bool is_lose(Player<char>* player);
 
+    /**
+     * @brief Checks if board is full (draw).
+     */
     bool is_draw(Player<char>* player);
 
+    /**
+     * @brief Returns true if lose or draw.
+     */
     bool game_is_over(Player<char>* player);
 };
 
-// ======================= Misère X-O UI ==========================
+/**
+ * @brief Simple UI for Misère XO.
+ */
 class Misere_XO_UI : public UI<char> {
 public:
     Misere_XO_UI();
 
+    /**
+     * @brief Creates a new player.
+     */
     Player<char>* create_player(string& name, char symbol, PlayerType type);
 
+    /**
+     * @brief Reads player move from input.
+     */
     Move<char>* get_move(Player<char>* player);
 };
 
