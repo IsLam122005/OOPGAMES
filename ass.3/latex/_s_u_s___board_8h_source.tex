@@ -1,0 +1,47 @@
+\doxysection{SUS\+\_\+\+Board.\+h}
+\hypertarget{_s_u_s___board_8h_source}{}\label{_s_u_s___board_8h_source}\index{ass.3/SUS\_Board.h@{ass.3/SUS\_Board.h}}
+\mbox{\hyperlink{_s_u_s___board_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ SUS.h}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ SUS\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ SUS\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_board_game___classes_8h}{BoardGame\_Classes.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_u_s___move_ae79aa68ac90359d5c283caf31656c1b3}{SUS\_Move}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_move_a100102cb072a2857304023233dac7b42}{Move}}<char>\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_s_u_s___move_ae79aa68ac90359d5c283caf31656c1b3}{SUS\_Move}}(\textcolor{keywordtype}{int}\ r\ =\ -\/1,\ \textcolor{keywordtype}{int}\ c\ =\ -\/1,\ \textcolor{keywordtype}{char}\ s\ =\ \textcolor{charliteral}{'S'})\ :\ \mbox{\hyperlink{class_move_a100102cb072a2857304023233dac7b42}{Move}}<char>(r,\ c,\ s)\ \{\}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_u_s___move_a25964d3139a4aec2cfa35352171eb0b6}{\string~SUS\_Move}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_u_s___board_a653be0dfe8070a59361bd228c0b54f71}{SUS\_Board}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_board_ae5dfded241ee3644196e2f6074d1d0b1}{Board}}<char>\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_s_u_s___board_a653be0dfe8070a59361bd228c0b54f71}{SUS\_Board}}();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_u_s___board_a19bc0c4e63b7039f047a654d81695663}{\string~SUS\_Board}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_s_u_s___board_a22679cdc9a91a17fea898c66ad821e45}{update\_board}}(\mbox{\hyperlink{class_move}{Move<char>}}*\ move)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_s_u_s___board_a2230a0e70a119a14e7e7380ba9b2cb90}{is\_win}}(\mbox{\hyperlink{class_player}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_s_u_s___board_a3761b3ce05e2194ff95893b494a3c933}{is\_lose}}(\mbox{\hyperlink{class_player}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_s_u_s___board_aeb2ad5ce9bdd10ecf2d3cf06be14e6ca}{is\_draw}}(\mbox{\hyperlink{class_player}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_s_u_s___board_acd2c39612239065da3aea67ac7c27aa4}{game\_is\_over}}(\mbox{\hyperlink{class_player}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_u_s___board_a27f75dc98f5e5dd6b9155fa632a771d6}{play}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{int}\ scoreS;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{int}\ scoreU;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ inRange(\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ countSUSAtCell(\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SUS\_H}}
+
+\end{DoxyCode}

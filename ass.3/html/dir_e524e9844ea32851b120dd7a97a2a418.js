@@ -1,0 +1,28 @@
+var dir_e524e9844ea32851b120dd7a97a2a418 =
+[
+    [ "BoardGame_Classes.h", "_board_game___classes_8h.html", "_board_game___classes_8h" ],
+    [ "diamondXO.cpp", "diamond_x_o_8cpp.html", null ],
+    [ "diamondXO.h", "diamond_x_o_8h.html", "diamond_x_o_8h" ],
+    [ "FiveByFive_Classes.cpp", "_five_by_five___classes_8cpp.html", null ],
+    [ "FiveByFive_Classes.h", "_five_by_five___classes_8h.html", "_five_by_five___classes_8h" ],
+    [ "FourInRow_Board.cpp", "_four_in_row___board_8cpp.html", "_four_in_row___board_8cpp" ],
+    [ "FourInRow_Board.h", "_four_in_row___board_8h.html", "_four_in_row___board_8h" ],
+    [ "Infinity_Board.cpp", "_infinity___board_8cpp.html", null ],
+    [ "Infinity_Board.h", "_infinity___board_8h.html", "_infinity___board_8h" ],
+    [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
+    [ "MisereXO_Classes.cpp", "_misere_x_o___classes_8cpp.html", null ],
+    [ "MisereXO_Classes.h", "_misere_x_o___classes_8h.html", "_misere_x_o___classes_8h" ],
+    [ "numerical tic-tac-toe.cpp", "numerical_01tic-tac-toe_8cpp.html", null ],
+    [ "numerical tic-tac-toe.h", "numerical_01tic-tac-toe_8h.html", "numerical_01tic-tac-toe_8h" ],
+    [ "Obstacles_TicTacToe.cpp", "_obstacles___tic_tac_toe_8cpp.html", "_obstacles___tic_tac_toe_8cpp" ],
+    [ "Obstacles_TicTacToe.h", "_obstacles___tic_tac_toe_8h.html", "_obstacles___tic_tac_toe_8h" ],
+    [ "Pyramid_X_O.cpp", "_pyramid___x___o_8cpp.html", null ],
+    [ "Pyramid_X_O.h", "_pyramid___x___o_8h.html", "_pyramid___x___o_8h" ],
+    [ "SUS_Board.cpp", "_s_u_s___board_8cpp.html", "_s_u_s___board_8cpp" ],
+    [ "SUS_Board.h", "_s_u_s___board_8h.html", "_s_u_s___board_8h" ],
+    [ "TicTacToe4x4.h", "_tic_tac_toe4x4_8h.html", "_tic_tac_toe4x4_8h" ],
+    [ "WordGame_Classes.cpp", "_word_game___classes_8cpp.html", null ],
+    [ "WordGame_Classes.h", "_word_game___classes_8h.html", "_word_game___classes_8h" ],
+    [ "XO_Classes.cpp", "_x_o___classes_8cpp.html", null ],
+    [ "XO_Classes.h", "_x_o___classes_8h.html", "_x_o___classes_8h" ]
+];

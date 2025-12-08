@@ -1,0 +1,30 @@
+\doxysection{Infinity\+\_\+\+Board.\+h}
+\hypertarget{_infinity___board_8h_source}{}\label{_infinity___board_8h_source}\index{ass.3/Infinity\_Board.h@{ass.3/Infinity\_Board.h}}
+\mbox{\hyperlink{_infinity___board_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ INFINITY\_BOARD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ INFINITY\_BOARD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_board_game___classes_8h}{BoardGame\_Classes.h}}"{}}\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_infinity___board_a70c26a8f29d4d3ba36e948e7b2400a5d}{Infinity\_Board}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_board_ae5dfded241ee3644196e2f6074d1d0b1}{Board}}<char>\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{char}\ blank\_symbol\ =\ \textcolor{charliteral}{'.'};}
+\DoxyCodeLine{00012\ \ \ \ \ queue<pair<int,\ int>>\ move\_history;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_infinity___board_a70c26a8f29d4d3ba36e948e7b2400a5d}{Infinity\_Board}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_infinity___board_a73168748decfd8a3bfa9044409d728aa}{update\_board}}(\mbox{\hyperlink{class_move}{Move<char>}}*\ move)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_infinity___board_a0d93549c5b8a55ce0e02f1b2514d6649}{is\_win}}(\mbox{\hyperlink{class_player}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_infinity___board_a4846e776c9f213814623b6cf5ee0500f}{is\_lose}}(\mbox{\hyperlink{class_player}{Player<char>}}*)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_infinity___board_ab0ea3f487553c34a33af3e99550b264e}{is\_draw}}(\mbox{\hyperlink{class_player}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_infinity___board_a269b17b6ede5bd97bcf60a28e04a83d3}{game\_is\_over}}(\mbox{\hyperlink{class_player}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}
