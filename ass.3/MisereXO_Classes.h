@@ -1,8 +1,7 @@
 ﻿#ifndef MISERE_XO_CLASSES_H
 #define MISERE_XO_CLASSES_H
 
-// Check if the include path is correct. If "BoardGame_Classes.h" is in the same directory, this is fine.
-// If it is in a parent or sibling directory, adjust the path accordingly, e.g.:
+
 #include "BoardGame_Classes.h" // If in the same directory
 
 using namespace std;
