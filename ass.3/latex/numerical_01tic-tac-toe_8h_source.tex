@@ -1,0 +1,46 @@
+\doxysection{numerical tic-\/tac-\/toe.h}
+\hypertarget{numerical_01tic-tac-toe_8h_source}{}\label{numerical_01tic-tac-toe_8h_source}\index{ass.3/numerical tic-\/tac-\/toe.h@{ass.3/numerical tic-\/tac-\/toe.h}}
+\mbox{\hyperlink{numerical_01tic-tac-toe_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ NUMERICAL\_TIC\_TAC\_TOE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ NUMERICAL\_TIC\_TAC\_TOE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_board_game___classes_8h}{BoardGame\_Classes.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_numerical_board_a42a524476426232323568732b8e5a22d}{NumericalBoard}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_board_ae5dfded241ee3644196e2f6074d1d0b1}{Board}}<T>\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00020\ \ \ \ \ std::vector<T>\ \mbox{\hyperlink{class_numerical_board_afd962df6bfd6e746bc260c934f649f52}{used\_numbers}};\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_numerical_board_a42a524476426232323568732b8e5a22d}{NumericalBoard}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_numerical_board_a76f0ed914c4b21f0017038fb3520216e}{update\_board}}(\mbox{\hyperlink{class_move}{Move<T>}}*\ move)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_numerical_board_a307d5b986266bff8ec3c449b43a076bc}{is\_win}}(\mbox{\hyperlink{class_player}{Player<T>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_numerical_board_aa519f0c3cf86de1aba1e7c7b2e364462}{is\_lose}}(\mbox{\hyperlink{class_player}{Player<T>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_numerical_board_a0da140b37a020ef802183e4fae1ad3f1}{is\_draw}}(\mbox{\hyperlink{class_player}{Player<T>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_numerical_board_ad4e1518fcef0d67d6b89c9366cec148e}{game\_is\_over}}(\mbox{\hyperlink{class_player}{Player<T>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_numerical_board_a87f69d3e420adae37e133782a4d49713}{is\_number\_used}}(T\ num);}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00085\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_numerical_u_i_ab6855948f68205fe7b2ae70709d5b1cc}{NumericalUI}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_u_i_ae50eed41905ca2f8dc103d9bef427fe6}{UI}}<T>\ \{}
+\DoxyCodeLine{00086\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{class_numerical_u_i_ab6855948f68205fe7b2ae70709d5b1cc}{NumericalUI}}();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{class_move}{Move<T>}}*\ \mbox{\hyperlink{class_numerical_u_i_aa2487b17494758be316d88e9dfb9c130}{get\_move}}(\mbox{\hyperlink{class_player}{Player<T>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{class_player}{Player<T>}}*\ \mbox{\hyperlink{class_numerical_u_i_a1056db31f528bb289d429adc79f36f24}{create\_player}}(std::string\&\ name,\ T\ symbol,\ \mbox{\hyperlink{_board_game___classes_8h_abe590f3c9109f404f003d5d7e4f0fccf}{PlayerType}}\ type)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ NUMERICAL\_TIC\_TAC\_TOE\_H}}
+
+\end{DoxyCode}

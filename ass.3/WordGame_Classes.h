@@ -52,7 +52,15 @@ public:
     Move<char>* get_move(Player<char>* player) override {
         int x, y;
         char c;
-        cout << player->get_name();
-    };
+        cout << player->get_name() << " (" << player->get_symbol() << "), enter row, col, and letter: ";
+        cin >> x >> y >> c;
+        c = toupper(c);
+        return new Move<char>(x, y, c);
+    }
+
+    /** @brief Create player object. */
+    Player<char>* create_player(string& name, char symbol, PlayerType type) override {
+        return new Player<char>(name, symbol, type);
+    }
 };
 #endif // WORDGAME_CLASSES_H
